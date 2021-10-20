@@ -32,6 +32,7 @@ public class Archivos {
 	Scanner sc = new Scanner(System.in); //Scanner para guardar lo que introduzca el usuario
 	private File archivo; //File que guarda el archivo que se divide
 	private File direccionParticiones; //File que guarda la ubicacion de las particiones
+	private File direccionXML; //File que guarda la ubicacion donde se creara el archivo XML
 	
 	//Metodo que asigna un archivo en el File, dado el enlace que proporciona el usuario, y llama al metodo existencia()
 	public void selectorArchivo() {
@@ -55,6 +56,12 @@ public class Archivos {
 			System.out.println("El archivo que la ruta especifica no existe. Por favor, asegúrese de asignar la ruta de un archivo que exista");
 			selectorArchivo();
 		}
+	}
+	
+	//Metodo que pregunta al usuario sobre en que directorio se guardara el archivo XML que se creara cuando se divida el archivo y guardara la direccion que introduzca el usuario en el File direccionXML
+	public void directorioXML() {
+		System.out.print("Escribe la direccion del XML: ");
+		direccionXML = new File (sc.nextLine());
 	}
 	
 	//Metodo que llamara al metodo dividir con el numero de partes como su entrada. En caso de que el archivo asignado no exista o no haya un archivo asignado volvera al metodo mostrarMenu()
@@ -212,7 +219,7 @@ public class Archivos {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("C:\\Users\\alumno\\Desktop\\xml.xml"));
+			StreamResult result = new StreamResult(new File(direccionXML +"\\xml.xml"));
 			
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {
@@ -223,7 +230,7 @@ public class Archivos {
 	}
 	
 	public void direccionParticiones() {
-		direccionParticiones = new File("");
+		sc.nextLine();
 		System.out.println("Escribe la ubicación de las particiones del archivo");
 		direccionParticiones = new File(sc.nextLine());
 	}
@@ -236,7 +243,7 @@ public class Archivos {
 		int XMLPartesArchivo = 0; //En cuantas partes se ha dividido el archivo
 		
 		try {
-            File XML = new File("C:\\Users\\alumno\\Desktop\\xml.xml");
+            File XML = new File(direccionXML+ "\\xml.xml");
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document document = db.parse(XML);

@@ -11,7 +11,7 @@ public class Main {
 	
 	//Método que generará el menú de la aplicación mediante terminal
 	private void generarmenu() {
-		System.out.println("Elije una opción:\n1. Elegir un archivo\n2. Dividir el archivo\n3. Unir archivos\n4. Salir");
+		System.out.println("Elije una opción:\n1. Elegir un archivo\n2. Ubicacion del XML\n3. Dividir el archivo\n4. Unir archivos\n5. Salir");
 	}
 	
 	//Metodo que ejecutara otro metodo segun la eleccion del usuario
@@ -30,15 +30,19 @@ public class Main {
 					archivo.selectorArchivo();
 					break;
 				case 2:
+					//Eleccion de direccion de XML
+					archivo.directorioXML();
+					break;
+				case 3:
 					//Division del archivo
 					archivo.partes();
 					break;
-				case 3:
+				case 4:
 					//Union de las particiones
 					archivo.direccionParticiones();
 					archivo.datosXML();
 					break;
-				case 4:
+				case 5:
 					//Salida de la aplicacion
 					System.out.println("Saliendo...");
 					break;
